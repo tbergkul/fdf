@@ -6,11 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:45:21 by tbergkul          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2020/01/03 15:59:39 by tbergkul         ###   ########.fr       */
-=======
-/*   Updated: 2019/12/28 17:47:52 by tbergkul         ###   ########.fr       */
->>>>>>> 94f850c015b8c1d66ccf3c3f0406ac1e4707a4f0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +15,7 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
-//# include "minilibx/mlx.h"
-#include "../mlx.h"
+# include "minilibx/mlx.h"
 
 # include <stdio.h>//remove
 
@@ -36,13 +31,8 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
-<<<<<<< HEAD
 # define KEY_PLUS 24
 # define KEY_MINUS 27
-=======
-# define KEY_PLUS 27
-# define KEY_MINUS 44
->>>>>>> 94f850c015b8c1d66ccf3c3f0406ac1e4707a4f0
 # define KEY_ESC 53
 
 # define ARROW_LEFT 123
@@ -52,43 +42,21 @@
 
 //man ~/Downloads/minilibx/man/man1/mlx_loop.1
 
-<<<<<<< HEAD
 /*typedef struct	s_win
-=======
-/*
-void struct	s_win
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-}				t_win;
-*/
-
-
-typedef struct	s_win
->>>>>>> 94f850c015b8c1d66ccf3c3f0406ac1e4707a4f0
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*new_img_ptr;
 	int			x;
 	int			y;
-<<<<<<< HEAD
 	int			z;//
 	int			hx;
 	int			hy;
 	int			zoom;
 }				t_win;*/
-=======
-	int			z;
-	int			hx;
-	int			hy;
-}				t_win;
->>>>>>> 94f850c015b8c1d66ccf3c3f0406ac1e4707a4f0
-
 
 typedef struct	s_map
 {
-<<<<<<< HEAD
 	char		**grid;//remove?
 	int			**ints;//remove?
 	int			nbcount;//remove?
@@ -138,22 +106,6 @@ typedef struct	s_map
 int				zoom(t_map *map);
 
 int				opened(t_map *map);
-=======
-	char		**grid;
-	int			**ints;
-	int			nbcount;
-	char		*temp;
-	int			rowlen;
-	int			rows;
-	int			counter;
-	int			size;
-	int			lines;
-}				t_map;
-
-int				zoom(t_win *win);
-
-int				opened(t_win *win, t_map *map);
->>>>>>> 94f850c015b8c1d66ccf3c3f0406ac1e4707a4f0
 
 int				window(t_map *map);
 
