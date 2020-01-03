@@ -6,7 +6,7 @@
 #    By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/13 14:55:32 by tbergkul          #+#    #+#              #
-#    Updated: 2019/12/18 14:11:04 by tbergkul         ###   ########.fr        #
+#    Updated: 2019/12/19 17:17:26 by tbergkul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ MLXDIR = includes/minilibx/
 
 # MLX = includes/minilibx/libmlx.a
 
-MLX = /usr/local/lib/libmlx.a
+# MLX = /usr/local/lib/libmlx.a
+
+MLX = libmlx.a
 
 SRCS = $(addprefix $(SRCDIR),$(SRC))
 
@@ -40,6 +42,7 @@ CCFL = gcc -g -Wall -Wextra -Werror
 # specify the path to the MinilibX library using the -L flag
 # @make -C $(MLXDIR)
 
+MLXLIB = ~/Documents/Code/fdf/
 
 # $(OBJ) $(INCLUDE)
 
@@ -47,7 +50,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBDIR)
-	@$(CCFL) -o $(NAME) $(LIB) $(SRCS) $(MLX) -lmlx -framework OpenGL -framework AppKit
+	@$(CCFL) -o $(NAME) $(LIB) $(SRCS) $(MLX) -L $(MLXLIB) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	@/bin/rm -f $(OBJ)
