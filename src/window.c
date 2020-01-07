@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 18:53:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/03 16:00:08 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:55:59 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,57 @@ int		key_pressed(int key, t_map *map)
 {
 	if (key == KEY_W)
 	{
-		map->hy--;
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy, COLOR_GREEN);
-		printf("W\n");
+		map->starty -= 30;
+		mlx_clear_window(map->mlx_ptr, map->win_ptr);
+		opened(map);
 	}
 	else if (key == KEY_A)
 	{
-		map->hx--;
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy, COLOR_GREEN);
-		printf("A\n");
+		map->startx -= 30;
+		mlx_clear_window(map->mlx_ptr, map->win_ptr);
+		opened(map);
 	}
 	else if (key == KEY_S)
 	{
-		map->hy++;
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy, COLOR_GREEN);
-		printf("S\n");
+		map->starty += 30;
+		mlx_clear_window(map->mlx_ptr, map->win_ptr);
+		opened(map);
 	}
 	else if (key == KEY_D)
 	{
-		map->hx++;
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy, COLOR_GREEN);
-		printf("D\n");
+		map->startx += 30;
+		mlx_clear_window(map->mlx_ptr, map->win_ptr);
+		opened(map);
 	}
 	else if (key == KEY_PLUS)
 	{
-		printf("+\n");
-		map->zoom += 10;
+		map->zoom += 5;
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		opened(map);
 	}
 	else if (key == KEY_MINUS)
 	{
-		printf("-\n");
-		map->zoom -= 10;
+		if (map->zoom > -15)
+			map->zoom -= 5;
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		opened(map);
 	}
 	else if (key == KEY_ESC)
-	{
-		printf("Esc\n");
 		exit(0);
+	else if (key == KEY_SPACE)
+	{
+		map->zoom = 0;
+		map->startx = 600;
+		map->starty = 100;
+		mlx_clear_window(map->mlx_ptr, map->win_ptr);
+		opened(map);
 	}
 	else
-	{
 		printf("key = %d\n", key);
-	}
 	return (0);
 }
 
-/*int		zoom(t_win *win)
-{
-	map->new_img_ptr = mlx_new_image(map->mlx_ptr, map->x, map->y);
-	mlx_pixel_put(map->mlx_ptr, map->new_img_ptr, map->hx, map->hy, COLOR_YELLOW);
-	map->hy++;
-	mlx_pixel_put(map->mlx_ptr, map->new_img_ptr, map->hx, map->hy, COLOR_YELLOW);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->new_img_ptr, map->x, map->y);
-	return (0);
-}*/
-
-int		get_colorx(t_map *map, int nb)
+/*int		get_colorx(t_map *map, int nb)
 {
 	if (nb >= 10)
 	{
@@ -97,9 +89,9 @@ int		get_colorx(t_map *map, int nb)
 		map->active_colorx = COLOR_BLUE;
 	return (map->active_colorx);
 
-}
+}*/
 
-int		get_colory(t_map *map, int nb)
+/*int		get_colory(t_map *map, int nb)
 {
 	if (nb >= 10)
 	{
@@ -121,15 +113,14 @@ int		get_colory(t_map *map, int nb)
 	else if (nb < 0)
 		map->active_colorx = COLOR_BLUE;
 	return (map->active_colory);
+}*/
 
-}
-
-int		get_diff(int nb1, int nb2)//remove and do easier?
+/*int		get_diff(int nb1, int nb2)//remove and do easier?
 {
 	return (nb2 - nb1);
-}
+}*/
 
-int		ft_scale(t_map *map)
+/*int		ft_scale(t_map *map)
 {
 	if (map->size >= 35)
 	{
@@ -143,9 +134,9 @@ int		ft_scale(t_map *map)
 	}
 	printf("size = %d\nscaley = %d\nscalex = %d\n", map->size, map->scaley, map->scalex);
 	return (map->scaley);
-}
+}*/
 
-void	draw_map(t_map *map)
+/*void	draw_twod(t_map *map)
 {
 	int	line;
 	int	nb;
@@ -168,7 +159,7 @@ void	draw_map(t_map *map)
 		while (map->nbrs[line][++nb])//while (map->grid[y][++x])
 		{
 			//remove?
-			/*if (line == 0 && nb != map->rowlen - 1)//samma med color
+			if (line == 0 && nb != map->rowlen - 1)//samma med color
 			{
 				if (map->nbrs[line][nb][x] == '0')
 				{
@@ -185,9 +176,9 @@ void	draw_map(t_map *map)
 					while (++map->lines < map->size)
 						mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx + map->lines, map->hy, COLOR_RED);
 				}
-			}*/
+			}
 			//remove?
-			/*/
+			/
 			if (nb == 0 && line != map->rows - 1)
 			{
 				if (map->nbrs[line][nb][x] == '0')
@@ -203,7 +194,7 @@ void	draw_map(t_map *map)
 					while (++map->lines < map->size)
 						mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy + map->lines, COLOR_RED);
 				}
-			}*/
+			}
 			if (map->nbrs[line][nb][x] == '0')
 			{
 				mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->hx, map->hy, COLOR_WHITE);
@@ -248,36 +239,169 @@ void	draw_map(t_map *map)
 		}
 		map->hy += map->size;
 	}
+}*/
+
+int		get_color(int z0, int z1)
+{
+	z1 = 0;
+	if (z0 < 0)
+		return (COLOR_BLUE);
+	if (z0 == 0)
+		return (COLOR_WHITE);
+	if (z0 >= 1 && z0 < 5)
+		return (COLOR_YELLOW);
+	if (z0 >= 5 && z0 < 10)
+		return (COLOR_ORANGE);
+	return (COLOR_RED);
+
+}
+
+void	m_neg(t_map *map, int z0, int z1)
+{
+	int	inc1;
+	int	inc2;
+	int	e;
+	int	i;
+
+	i = 0;
+	mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->x1, map->y1, get_color(z0, z1));
+	e = (2 * map->dy) - map->dx;
+	inc1 = 2 * (map->dy - map->dx);
+	inc2 = 2 * map->dy;
+	while (i < map->dx)
+	{
+		if (e >= 0)
+		{
+			map->y1 = map->y1 + map->incy;
+			e = e + inc1;
+		}
+		else
+			e = e + inc2;
+		map->x1 = map->x1 + map->incx;
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->x1, map->y1, get_color(z0, z1));
+		i++;
+	}
+}
+
+void	m_pos(t_map *map, int z0, int z1)
+{
+	int	inc1;
+	int	inc2;
+	int	e;
+	int	i;
+
+	i = 0;
+	mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->x1, map->y1, get_color(z0, z1));
+	e = (2 * map->dx) - map->dy;
+	inc1 = 2 * (map->dx - map->dy);
+	inc2 = 2 * map->dx;
+	while (i < map->dy)
+	{
+		if (e >= 0)
+		{
+			map->x1 = map->x1 + map->incx;
+			e = e + inc1;
+		}
+		else
+			e = e + inc2;
+		map->y1 = map->y1 + map->incy;
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, map->x1, map->y1, get_color(z0, z1));
+		i++;
+	}
+}
+
+void	bresenham(t_map *map, int z0, int z1)
+{
+	map->dx = map->x2 - map->x1;
+	map->dy = map->y2 - map->y1;
+	map->dx = abs(map->dx);
+	map->dy = abs(map->dy);
+	map->incx = (map->x2 > map->x1) ? 1 : -1;
+	map->incy = (map->y2 > map->y1) ? 1 : -1;
+	if (map->dx > map->dy)
+		m_neg(map, z0, z1);
+	else
+		m_pos(map, z0, z1);
+}
+
+int		coord_x(t_map *map, int x, int y)
+{
+	return (map->startx - (map->scalex * y) + (map->scalex * x));
+}
+
+int		coord_y(t_map *map, int x, int y, int z)
+{
+	if (z > 1000)
+		z = 1000;
+	if (z < -1000)
+		z = -1000;
+	return (map->starty + ((map->scaley) * x) + ((map->scaley) * y) - (z * 2));
+}
+
+void	draw_x(t_map *map)
+{
+	int			i;
+	int			j;
+	int			k;
+
+	i = -1;
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 20, 20, COLOR_GREEN, "Quit = ESC");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 20, 40, COLOR_GREEN, "Move = W A S D");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 20, 60, COLOR_GREEN, "Zoom = + -");
+	while (++i < map->rows - 1)
+	{
+		k = 0;
+		j = -1;
+		while (++j < map->rowlen && (map->rowlen + 1 - j) > 0)
+		{
+			map->x1 = coord_x(map, j, i);
+			map->y1 = coord_y(map, j, i, ft_atoi(map->nbrs[i][j]));
+			map->x2 = coord_x(map, j, i + 1);
+			map->y2 = coord_y(map, j, i + 1, ft_atoi(map->nbrs[i + 1][j]));
+			bresenham(map, ft_atoi(map->nbrs[i][j]), ft_atoi(map->nbrs[i + 1][j]));
+		}
+	}
+}
+
+void	draw_y(t_map *map)
+{
+	int			i;
+	int			j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = 0;
+		while (j < (map->rowlen - 1))
+		{
+			map->x1 = coord_x(map, j, i);
+			map->y1 = coord_y(map, j, i, ft_atoi(map->nbrs[i][j]));
+			j++;
+			map->x2 = coord_x(map, j, i);
+			map->y2 = coord_y(map, j, i, ft_atoi(map->nbrs[i][j]));
+			bresenham(map, ft_atoi(map->nbrs[i][j - 1]), ft_atoi(map->nbrs[i][j]));
+		}
+	}
 }
 
 int		opened(t_map *map)
 {
-	map->size = 35 + map->zoom;//not to small
-	//
-	map->x = 1200;
-	map->y = 800;
-	draw_map(map);
-	//printf("keyhook = %d\n", mlx_key_hook(map->win_ptr, key_pressed, win));
-	//map->new_img_ptr = mlx_new_image(map->mlx_ptr, map->x, map->y);
+	map->scalex = 20 + map->zoom;
+	map->scaley = 20 + map->zoom;
+	draw_y(map);
+	draw_x(map);
 	mlx_key_hook(map->win_ptr, key_pressed, map);
-	//mlx_new_window(map->mlx_ptr, map->x, map->y, "FDF");
-	//draw_map(win, map);
-	//mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->new_img_ptr, map->x, map->y);
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }
 
 int		window(t_map *map)
 {
-	/*t_win	*win;
-
-	if (!(win = (t_win *)malloc(sizeof(t_win))))
-		return (-1);*/
-	map->x = 1200;
-	map->y = 800;
 	map->zoom = 0;
+	map->startx = 600;
+	map->starty = 100;
 	map->mlx_ptr = mlx_init();
-	map->win_ptr = mlx_new_window(map->mlx_ptr, map->x, map->y, "FDF");
+	map->win_ptr = mlx_new_window(map->mlx_ptr, MAP_WIDTH, MAP_HEIGTH, "FDF");
 	opened(map);
 	return (0);
 }

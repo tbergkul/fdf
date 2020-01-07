@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 10:57:16 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/27 15:04:48 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:41:24 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+char				**copy_to_twod_array(char *str, int rowlen, int rows);
 
 int					*ft_intnew(size_t size);
 
