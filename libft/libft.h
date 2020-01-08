@@ -6,11 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 10:57:16 by tbergkul          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2020/01/08 11:07:45 by tbergkul         ###   ########.fr       */
-=======
-/*   Updated: 2020/01/07 15:41:24 by tbergkul         ###   ########.fr       */
->>>>>>> f8401beef5ad235b9f0969dd2152e331e92c5c4d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +26,6 @@ typedef struct		s_list
 }					t_list;
 
 char				**copy_to_twod_array(char *str, int rowlen, int rows);
-<<<<<<< HEAD
-=======
-
-int					*ft_intnew(size_t size);
->>>>>>> f8401beef5ad235b9f0969dd2152e331e92c5c4d
 
 void				print_threed_array(char ***array);
 
