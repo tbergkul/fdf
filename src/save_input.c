@@ -6,7 +6,11 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:36:17 by tbergkul          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/08 13:20:53 by tbergkul         ###   ########.fr       */
+=======
+/*   Updated: 2020/01/07 15:43:48 by tbergkul         ###   ########.fr       */
+>>>>>>> f8401beef5ad235b9f0969dd2152e331e92c5c4d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +24,16 @@ int	save_nbrs(t_map *map, int *fd)
 		return (0);
 	map->rows = 0;
 	while (get_next_line(*fd, &line) > 0)
+<<<<<<< HEAD
 	{
 		map->nbrs[map->rows++] = ft_strsplit(line, ' ');
 		ft_memdel((void **)&line);
 	}
 	map->nbrs[map->rows] = NULL;
+=======
+		map->nbrs[map->rows++] = ft_strsplit(line, ' ');
+	map->nbrs[map->rows] = NULL;//remove?
+>>>>>>> f8401beef5ad235b9f0969dd2152e331e92c5c4d
 	map->rowlen = 0;
 	while (map->nbrs[0][map->rowlen])
 		map->rowlen++;
