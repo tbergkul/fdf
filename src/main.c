@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:43:55 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/03 14:54:45 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/08 12:17:24 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int ac, char **av)
 {
-	system("clear");
 	t_map	*map;
 
+	system("clear");
 	if (ac != 2)
 		ft_error();
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
@@ -25,6 +25,5 @@ int	main(int ac, char **av)
 		return (-1);
 	if (!(window(map)))
 		return (-1);
-	//system("\n\nLEAKS fdf\n\n");
 	return (0);
 }

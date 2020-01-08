@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intnew.c                                        :+:      :+:    :+:   */
+/*   copy_to_twod_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/27 14:53:10 by tbergkul          #+#    #+#             */
-/*   Updated: 2019/12/28 17:19:38 by tbergkul         ###   ########.fr       */
+/*   Created: 2019/12/16 15:36:17 by tbergkul          #+#    #+#             */
+/*   Updated: 2020/01/08 11:06:04 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	*ft_intnew(size_t size)
+char	**copy_to_twod_array(char *str, int rowlen, int rows)
 {
-	int				*ints;
-	unsigned int	*ptr;
-	size_t			i;
+	char	**array;
+	int		y;
+	int		x;
+	int		i;
 
-	if (!(ints = (int *)malloc(sizeof(int) * size)))
+	if (!(array = (char **)malloc(sizeof(char *) * rows + 1)))
 		return (NULL);
-	ptr = (unsigned int *)ints;
-	i = 0;
-	while (i < size)
+	array[0] = ft_strnew(rowlen + 1);
+	i = -1;
+	y = 0;
+	x = -1;
+	while (str[++i])
 	{
-		*ptr = 0;
-		ptr++;
-		i++;
+		array[y][++x] = str[i];
+		if (x == rowlen - 1)
+		{
+			array[y][++x] = '\0';
+			y++;
+			x = -1;
+			array[y] = ft_strnew(rowlen + 1);
+		}
 	}
-	return (ints);
+	array[y] = NULL;
+	return (array);
 }
