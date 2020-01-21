@@ -6,19 +6,27 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 17:07:28 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 15:22:31 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:08:34 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+/*
+**	Draw_instructions will draw the instructions how to navigate/use
+**	the program.
+*/
 
 void	draw_instructions(t_map *map)
 {
 	mlx_string_put(map->mlx, map->win, 20, 20, COLOR_GREEN, "Quit:   ESC");
 	mlx_string_put(map->mlx, map->win, 20, 40, COLOR_GREEN, "Move:   W A S D");
 	mlx_string_put(map->mlx, map->win, 20, 60, COLOR_GREEN, "Zoom:   + -");
-	mlx_string_put(map->mlx, map->win, 20, 80, COLOR_GREEN, "Rotate: Arrows");
-	mlx_string_put(map->mlx, map->win, 20, 100, COLOR_GREEN, "Adjust z: Q E");
+	if (map->camera == 1)
+	{
+		mlx_string_put(map->mlx, map->win, 20, 80, COLOR_GREEN, "Rotate: Arrows");
+		mlx_string_put(map->mlx, map->win, 20, 100, COLOR_GREEN, "Adjust z: Q E");
+	}
 }
 
 int		key_pressed_three(int key, t_map *map)
@@ -40,7 +48,7 @@ int		key_pressed_three(int key, t_map *map)
 	map->roty = 0;
 	map->z = 0;
 	mlx_clear_window(map->mlx, map->win);
-	opened(map);
+	draw(map);
 	return (0);
 }
 
@@ -58,15 +66,18 @@ int		key_pressed_two(int key, t_map *map)
 			map->zoom -= 3;
 	}
 	else if (key == KEY_ESC)
-	{
 		exit(0);
-	}
 	else
 		return (key_pressed_three(key, map));
 	mlx_clear_window(map->mlx, map->win);
-	opened(map);
+	draw(map);
 	return (0);
 }
+
+/*
+**	Key_pressed functions will determine which key was pressed
+**	and act accordingly.
+*/
 
 int		key_pressed(int key, t_map *map)
 {
@@ -93,6 +104,6 @@ int		key_pressed(int key, t_map *map)
 	else
 		return (key_pressed_two(key, map));
 	mlx_clear_window(map->mlx, map->win);
-	opened(map);
+	draw(map);
 	return (0);
 }

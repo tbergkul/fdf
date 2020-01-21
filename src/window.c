@@ -6,11 +6,15 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 18:53:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 15:08:59 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:09:53 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+/*
+**	Get_color will calculate which color to use for the next line.
+*/
 
 int		get_color(int z0, int z1)
 {
@@ -27,6 +31,10 @@ int		get_color(int z0, int z1)
 		return (COLOR_ORANGE);
 	return (COLOR_RED);
 }
+
+/*
+**
+*/
 
 void	m_neg(t_map *map, int z0, int z1)
 {
@@ -55,6 +63,10 @@ void	m_neg(t_map *map, int z0, int z1)
 	}
 }
 
+/*
+**
+*/
+
 void	m_pos(t_map *map, int z0, int z1)
 {
 	int	inc1;
@@ -82,6 +94,10 @@ void	m_pos(t_map *map, int z0, int z1)
 	}
 }
 
+/*
+**
+*/
+
 void	bresenham(t_map *map, int z0, int z1)
 {
 	map->dx = map->x2 - map->x1;
@@ -96,6 +112,11 @@ void	bresenham(t_map *map, int z0, int z1)
 		m_pos(map, z0, z1);
 }
 
+/*
+**	Window will reset variabels and initiate the connection to the
+**	drawing window and call the function draw to draw the 3D map.
+*/
+
 int		window(t_map *map)
 {
 	map->zoom = 0;
@@ -107,6 +128,6 @@ int		window(t_map *map)
 	map->z = 0;
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, MAP_WIDTH, MAP_HEIGHT, "FDF");
-	opened(map);
+	draw(map);
 	return (0);
 }

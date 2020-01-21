@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:12:32 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 15:33:25 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:03:57 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int		coord_x(t_map *map, int x, int y)
 {
 	return (map->startx - (map->scalex * y) + (map->scalex * x));
 }
+
+/*
+**	Coord_x and coord_y will return the x or y coordinates to be used
+**	in the 3D map for each number in the 3D array.
+*/
 
 int		coord_y(t_map *map, int x, int y, int z)
 {
@@ -34,6 +39,8 @@ int		coord_y(t_map *map, int x, int y, int z)
 
 /*
 **	// && (map->rowlen + 1 - i) > 0) //needed?
+**
+**	Draw_y will draw the lines in the y-axis in the 3D map.
 */
 
 void	draw_y(t_map *map)
@@ -57,6 +64,10 @@ void	draw_y(t_map *map)
 	}
 }
 
+/*
+**	Draw_x will draw the lines in the x-axis in the 3D map.
+*/
+
 void	draw_x(t_map *map)
 {
 	int	i;
@@ -79,7 +90,12 @@ void	draw_x(t_map *map)
 	}
 }
 
-int		opened(t_map *map)
+/*
+**	The function draw will call functions to draw either the
+**	3D map or the 2D map depending on the camera variable.
+*/
+
+int		draw(t_map *map)
 {
 	if (map->camera == 1)
 	{

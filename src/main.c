@@ -6,11 +6,15 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:43:55 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 14:11:20 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:48:42 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+/*
+**	remove system clear
+*/
 
 int	main(int ac, char **av)
 {

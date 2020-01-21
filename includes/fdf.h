@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:45:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 14:40:13 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:39:29 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				key_pressed(int key, t_map *map);
 
 void			bresenham(t_map *map, int z0, int z1);
 
-int				opened(t_map *map);
+int				draw(t_map *map);
 
 int				window(t_map *map);
 

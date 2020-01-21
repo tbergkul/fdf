@@ -6,7 +6,7 @@
 #    By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/13 14:55:32 by tbergkul          #+#    #+#              #
-#    Updated: 2020/01/08 11:18:41 by tbergkul         ###   ########.fr        #
+#    Updated: 2020/01/21 16:12:41 by tbergkul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,7 @@ NAME = fdf
 
 LIB = libft/libft.a
 
-INCLUDE = includes/fdf.h
-
-SRC = draw.c window.c save_input.c key_pressed.c main.c ft_error.c
+SRC = draw.c window.c save_input.c key_pressed.c main.c
 
 SRCDIR = src/
 
@@ -26,7 +24,7 @@ MLX = /usr/local/lib/libmlx.a
 
 SRCS = $(addprefix $(SRCDIR),$(SRC))
 
-CCFL = gcc -g -Wall -Wextra -Werror
+CCFL = gcc -Wall -Wextra -Werror
 
 .PHONY = all $(NAME) clean fclean re
 
