@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:45:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/08 13:21:53 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:40:13 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include "minilibx/mlx.h"
-
-# include <stdio.h>//remove
 
 # define MAP_WIDTH 1280
 # define MAP_HEIGHT 720
@@ -33,6 +31,8 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_Q 12
+# define KEY_E 14
 # define KEY_PLUS_MAIN 24
 # define KEY_MINUS_MAIN 27
 # define KEY_PLUS_NUM 69
@@ -40,26 +40,19 @@
 # define KEY_SPACE 49//remove
 # define KEY_1 18
 # define KEY_2 19
-# define KEY_3 20//remove
 # define KEY_ESC 53
-
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define ARROW_DOWN 125
 # define ARROW_UP 126
 
-//man ~/Downloads/minilibx/man/man1/mlx_loop.1
-
 typedef struct	s_map
 {
-	int			nbcount;
 	int			rowlen;
 	int			rows;
-	int			size;
 	char		***nbrs;
 	void		*mlx;
 	void		*win;
-	void		*new_img_ptr;//remove?
 	int			zoom;
 	int			rotx;
 	int			roty;
@@ -75,7 +68,18 @@ typedef struct	s_map
 	int			dy;
 	int			incx;
 	int			incy;
+	int			camera;
+	int			z;
+	int			a;
+	int			b;
+	int			c;
 }				t_map;
+
+void			draw_twod(t_map *map);
+
+void			draw_instructions(t_map *map);
+
+int				get_color(int z0, int z1);
 
 int				key_pressed(int key, t_map *map);
 
@@ -86,7 +90,5 @@ int				opened(t_map *map);
 int				window(t_map *map);
 
 int				save_input(char *av, t_map *map);
-
-void			ft_error(void);
 
 #endif

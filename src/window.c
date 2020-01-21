@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 18:53:04 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/08 11:55:34 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:08:59 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int		get_color(int z0, int z1)
 {
-	z1 = 0;
-	if (z0 < 0)
+	int	z;
+
+	z = (z1 >= z0) ? z1 : z0;
+	if (z < 0)
 		return (COLOR_BLUE);
-	if (z0 == 0)
+	if (z == 0)
 		return (COLOR_WHITE);
-	if (z0 >= 1 && z0 < 5)
+	if (z >= 1 && z < 5)
 		return (COLOR_YELLOW);
-	if (z0 >= 5 && z0 < 10)
+	if (z >= 5 && z < 10)
 		return (COLOR_ORANGE);
 	return (COLOR_RED);
 }
@@ -101,6 +103,8 @@ int		window(t_map *map)
 	map->roty = 0;
 	map->startx = 600;
 	map->starty = 100;
+	map->camera = 1;
+	map->z = 0;
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, MAP_WIDTH, MAP_HEIGHT, "FDF");
 	opened(map);

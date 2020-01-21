@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:43:55 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/08 12:17:24 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:11:20 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	main(int ac, char **av)
 
 	system("clear");
 	if (ac != 2)
-		ft_error();
+	{
+		ft_putendl("usage: ./fdf input_file");
+		exit(1);
+	}
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (-1);
 	if (!(save_input(av[1], map)))

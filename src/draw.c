@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:12:32 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/08 13:13:04 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:33:25 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,29 @@ int		coord_y(t_map *map, int x, int y, int z)
 		z = 25000;
 	if (z < -25000)
 		z = -25000;
-	return (map->starty + ((map->scaley) * x) + ((map->scaley) * y) - (z * 2));
+	if (z != 0)
+	{
+		return (map->starty + ((map->scaley) * x) +
+		((map->scaley) * y) - (z * 2 + map->z));
+	}
+	else
+		return (map->starty + ((map->scaley) * x) + ((map->scaley) * y));
 }
 
-void	draw_x(t_map *map)
+/*
+**	// && (map->rowlen + 1 - i) > 0) //needed?
+*/
+
+void	draw_y(t_map *map)
 {
-	int			i;
-	int			j;
-	int			k;
+	int	i;
+	int	j;
 
 	j = -1;
-	mlx_string_put(map->mlx, map->win, 20, 20, COLOR_GREEN, "Quit:   ESC");
-	mlx_string_put(map->mlx, map->win, 20, 40, COLOR_GREEN, "Move:   W A S D");
-	mlx_string_put(map->mlx, map->win, 20, 60, COLOR_GREEN, "Zoom:   + -");
-	mlx_string_put(map->mlx, map->win, 20, 80, COLOR_GREEN, "Rotate: < > ^ v");
 	while (++j < map->rows - 1)
 	{
-		k = 0;
 		i = -1;
-		while (++i < map->rowlen && (map->rowlen + 1 - i) > 0)
+		while (++i < map->rowlen)
 		{
 			map->x1 = coord_x(map, i, j);
 			map->y1 = coord_y(map, i, j, ft_atoi(map->nbrs[j][i]));
@@ -53,10 +57,10 @@ void	draw_x(t_map *map)
 	}
 }
 
-void	draw_y(t_map *map)
+void	draw_x(t_map *map)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	j = -1;
 	while (++j < map->rows)
@@ -77,10 +81,22 @@ void	draw_y(t_map *map)
 
 int		opened(t_map *map)
 {
-	map->scalex = 20 + map->zoom + map->rotx;
-	map->scaley = 20 + map->zoom + map->roty;
-	draw_y(map);
-	draw_x(map);
+	if (map->camera == 1)
+	{
+		map->scalex = 20 + map->zoom + map->rotx;
+		map->scaley = 20 + map->zoom + map->roty;
+		draw_x(map);
+		draw_y(map);
+	}
+	else
+	{
+		map->scalex = 20 + map->zoom;
+		map->scaley = 20 + map->zoom;
+		map->a = map->startx;
+		map->b = map->starty;
+		draw_twod(map);
+	}
+	draw_instructions(map);
 	mlx_key_hook(map->win, key_pressed, map);
 	mlx_loop(map->mlx);
 	return (0);

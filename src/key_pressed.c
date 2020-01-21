@@ -6,123 +6,93 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 17:07:28 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/08 13:16:00 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:22:31 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	key_pressed_four(int key, t_map *map)
+void	draw_instructions(t_map *map)
 {
-	if (key == KEY_ESC)
+	mlx_string_put(map->mlx, map->win, 20, 20, COLOR_GREEN, "Quit:   ESC");
+	mlx_string_put(map->mlx, map->win, 20, 40, COLOR_GREEN, "Move:   W A S D");
+	mlx_string_put(map->mlx, map->win, 20, 60, COLOR_GREEN, "Zoom:   + -");
+	mlx_string_put(map->mlx, map->win, 20, 80, COLOR_GREEN, "Rotate: Arrows");
+	mlx_string_put(map->mlx, map->win, 20, 100, COLOR_GREEN, "Adjust z: Q E");
+}
+
+int		key_pressed_three(int key, t_map *map)
+{
+	if (key == KEY_1)
 	{
-		//system("\n\nLEAKS fdf\n\n");
-		exit(0);
-	}
-	else if (key == KEY_1)
-	{
-		map->zoom = 0;
-		map->rotx = 0;
-		map->roty = 0;
 		map->startx = 600;
 		map->starty = 100;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
+		map->camera = 1;
 	}
 	else if (key == KEY_2)
 	{
-		map->zoom = 0;
-		map->rotx = 0;
-		map->roty = -20;
-		map->startx = 600;
-		map->starty = 300;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
+		map->startx = 450;
+		map->starty = 150;
+		map->camera = 2;
 	}
-	else if (key == KEY_3)
-	{
-		map->zoom = 0;
-		map->rotx = 100;
-		map->roty = 0;
-		map->startx = 600;
-		map->starty = 100;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
+	map->zoom = 0;
+	map->rotx = 0;
+	map->roty = 0;
+	map->z = 0;
+	mlx_clear_window(map->mlx, map->win);
+	opened(map);
 	return (0);
 }
 
-int	key_pressed_three(int key, t_map *map)
+/*
+**	system("\n\nLEAKS fdf\n\n");
+*/
+
+int		key_pressed_two(int key, t_map *map)
 {
 	if (key == KEY_PLUS_MAIN || key == KEY_PLUS_NUM)
-	{
-		map->zoom += 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
+		map->zoom += 3;
 	else if (key == KEY_MINUS_MAIN || key == KEY_MINUS_NUM)
 	{
-		map->zoom -= 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
+		if (map->zoom > -18)
+			map->zoom -= 3;
 	}
-	return (key_pressed_four(key, map));
+	else if (key == KEY_ESC)
+	{
+		exit(0);
+	}
+	else
+		return (key_pressed_three(key, map));
+	mlx_clear_window(map->mlx, map->win);
+	opened(map);
+	return (0);
 }
 
-int	key_pressed_two(int key, t_map *map)
-{
-	if (key == ARROW_UP)
-	{
-		map->roty += 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
-	else if (key == ARROW_DOWN)
-	{
-		map->roty -= 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
-	else if (key == ARROW_RIGHT)
-	{
-		map->rotx += 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
-	else if (key == ARROW_LEFT)
-	{
-		map->rotx -= 5;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
-	return (key_pressed_three(key, map));
-}
-
-int	key_pressed(int key, t_map *map)
+int		key_pressed(int key, t_map *map)
 {
 	if (key == KEY_W)
-	{
 		map->starty -= 30;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
 	else if (key == KEY_A)
-	{
 		map->startx -= 30;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
 	else if (key == KEY_S)
-	{
 		map->starty += 30;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
 	else if (key == KEY_D)
-	{
 		map->startx += 30;
-		mlx_clear_window(map->mlx, map->win);
-		opened(map);
-	}
-	return (key_pressed_two(key, map));
+	else if (key == ARROW_UP)
+		map->roty += 5;
+	else if (key == ARROW_DOWN)
+		map->roty -= 5;
+	else if (key == ARROW_RIGHT)
+		map->rotx += 5;
+	else if (key == ARROW_LEFT)
+		map->rotx -= 5;
+	else if (key == KEY_Q)
+		map->z += 10;
+	else if (key == KEY_E)
+		map->z -= 10;
+	else
+		return (key_pressed_two(key, map));
+	mlx_clear_window(map->mlx, map->win);
+	opened(map);
+	return (0);
 }
