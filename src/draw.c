@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:12:32 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 16:03:57 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:21:28 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int		coord_y(t_map *map, int x, int y, int z)
 }
 
 /*
-**	// && (map->rowlen + 1 - i) > 0) //needed?
-**
 **	Draw_y will draw the lines in the y-axis in the 3D map.
+**	Will call functions coord_x and coord_y to get the coordinates
+**	for the x and y values and then call the bresenham function to
+**	draw the line using the calculated coordinates.
 */
 
 void	draw_y(t_map *map)
@@ -66,6 +67,9 @@ void	draw_y(t_map *map)
 
 /*
 **	Draw_x will draw the lines in the x-axis in the 3D map.
+**	Will call functions coord_x and coord_y to get the coordinates
+**	for the x and y values and then call the bresenham function to
+**	draw the line using the calculated coordinates.
 */
 
 void	draw_x(t_map *map)
@@ -91,8 +95,8 @@ void	draw_x(t_map *map)
 }
 
 /*
-**	The function draw will call functions to draw either the
-**	3D map or the 2D map depending on the camera variable.
+**	The function draw will decide depending on the camera
+**	variable if the 3D map or the 2D map should be drawn.
 */
 
 int		draw(t_map *map)

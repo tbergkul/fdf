@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 16:45:21 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 15:39:29 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:41:47 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define KEY_MINUS_MAIN 27
 # define KEY_PLUS_NUM 69
 # define KEY_MINUS_NUM 78
-# define KEY_SPACE 49//remove
 # define KEY_1 18
 # define KEY_2 19
 # define KEY_ESC 53
@@ -72,18 +71,17 @@ typedef struct	s_map
 	int			z;
 	int			a;
 	int			b;
-	int			c;
 }				t_map;
 
 void			draw_twod(t_map *map);
 
 void			draw_instructions(t_map *map);
 
-int				get_color(int z0, int z1);
+int				get_color(int z1, int z2);
 
 int				key_pressed(int key, t_map *map);
 
-void			bresenham(t_map *map, int z0, int z1);
+void			bresenham(t_map *map, int z1, int z2);
 
 int				draw(t_map *map);
 

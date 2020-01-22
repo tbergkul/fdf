@@ -6,7 +6,7 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 17:07:28 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 16:08:34 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:42:11 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	draw_instructions(t_map *map)
 	mlx_string_put(map->mlx, map->win, 20, 60, COLOR_GREEN, "Zoom:   + -");
 	if (map->camera == 1)
 	{
-		mlx_string_put(map->mlx, map->win, 20, 80, COLOR_GREEN, "Rotate: Arrows");
-		mlx_string_put(map->mlx, map->win, 20, 100, COLOR_GREEN, "Adjust z: Q E");
+		mlx_string_put(map->mlx, map->win, 20, 80,
+			COLOR_GREEN, "Rotate: Arrows");
+		mlx_string_put(map->mlx, map->win, 20, 100,
+			COLOR_GREEN, "Adjust z: Q E");
 	}
 }
 
@@ -51,10 +53,6 @@ int		key_pressed_three(int key, t_map *map)
 	draw(map);
 	return (0);
 }
-
-/*
-**	system("\n\nLEAKS fdf\n\n");
-*/
 
 int		key_pressed_two(int key, t_map *map)
 {

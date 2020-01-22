@@ -6,24 +6,17 @@
 #    By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/13 14:55:32 by tbergkul          #+#    #+#              #
-#    Updated: 2020/01/21 16:12:41 by tbergkul         ###   ########.fr        #
+#    Updated: 2020/01/22 11:39:37 by tbergkul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-
 LIB = libft/libft.a
-
-SRC = draw.c window.c save_input.c key_pressed.c main.c
-
-SRCDIR = src/
-
 LIBDIR = libft/
-
+SRC = draw.c window.c save_input.c key_pressed.c main.c
+SRCDIR = src/
 MLX = /usr/local/lib/libmlx.a
-
 SRCS = $(addprefix $(SRCDIR),$(SRC))
-
 CCFL = gcc -Wall -Wextra -Werror
 
 .PHONY = all $(NAME) clean fclean re

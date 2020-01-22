@@ -6,15 +6,14 @@
 /*   By: tbergkul <tbergkul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:36:17 by tbergkul          #+#    #+#             */
-/*   Updated: 2020/01/21 15:57:33 by tbergkul         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:43:45 by tbergkul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /*
-**	Helper function draw_line will draw the lines in the
-**	2D map.
+**	Helper function draw_line will draw the lines in the 2D map.
 */
 
 void	draw_line(t_map *map, int i, int j, int k)
@@ -63,12 +62,10 @@ void	draw_twod(t_map *map)
 }
 
 /*
-**	malloc bra size
-**
 **	Save_nbrs will read the lines in the file passed to the
 **	program and save the strings of numbers into a 3D array
-**	called map->nbrs. Also calculates the length of the rows
-**	and the amount of rows.
+**	called map->nbrs with the help of ft_strsplit. Also calculates
+**	the length of the rows and the amount of rows.
 */
 
 int		save_nbrs(t_map *map, int *fd)
